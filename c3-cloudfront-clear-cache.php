@@ -76,11 +76,8 @@ class CloudFront_Clear_Cache {
 			return false;
 		}
 
-		//IF not complete setting param. stop working.
-		foreach ( $c3_settings as $key => $value ) {
-			if ( ! $value ) {
-				return false;
-			}
+		if ( ! isset( $c3_settings['distribution_id'] ) && ! $c3_settings['distribution_id'] ) {
+			return false;
 		}
 		return $c3_settings;
 	}
@@ -103,10 +100,7 @@ class CloudFront_Clear_Cache {
 			return;
 		}
 
-		$credentials = new Credentials( esc_attr( $c3_settings['access_key'] ) , esc_attr( $c3_settings['secret_key'] ) );
-		$cloudFront = CloudFrontClient::factory(array(
-			'credentials' => $credentials,
-		));
+		$cloudFront = CloudFrontClient::factory();
 
 		$args = $this->c3_make_args( $c3_settings, $post );
 

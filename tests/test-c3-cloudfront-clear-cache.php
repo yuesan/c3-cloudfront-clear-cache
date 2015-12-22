@@ -12,8 +12,6 @@ class CloudFront_Clear_Cache_Test extends WP_UnitTestCase
 	function test_if_c3_settings_is_no_params() {
 		$param =  array(
 			'distribution_id' => '',
-			'access_key'      => '',
-			'secret_key'      => '',
 		);
 		update_option( 'c3_settings', $param );
 		$res = $this->get_c3_settings();
@@ -22,48 +20,11 @@ class CloudFront_Clear_Cache_Test extends WP_UnitTestCase
 
 	function test_if_c3_settings_is_has_all_params() {
 		$param =  array(
-			'distribution_id' => 'SOME_DISTRIBUTION',
-			'access_key'      => 'SOME_ACCESS_KEY',
-			'secret_key'      => 'SOME_SECRET_KEY',
+			'distribution_id' => 'SOME_DISTRIBUTION'
 		);
 		update_option( 'c3_settings', $param );
 		$res = $this->get_c3_settings();
 		$this->assertArrayHasKey( 'distribution_id' , $res );
-		$this->assertArrayHasKey( 'access_key' , $res );
-		$this->assertArrayHasKey( 'secret_key' , $res );
-	}
-
-	function test_if_c3_settings_is_has_lost_distribution_id_param() {
-		$param =  array(
-			'distribution_id' => '',
-			'access_key'      => 'SOME_ACCESS_KEY',
-			'secret_key'      => 'SOME_SECRET_KEY',
-		);
-		update_option( 'c3_settings', $param );
-		$res = $this->get_c3_settings();
-		$this->assertFalse( $res );
-	}
-
-	function test_if_c3_settings_is_has_lost_access_key_param() {
-		$param =  array(
-			'distribution_id' => 'SOME_DISTRIBUTION',
-			'access_key'      => '',
-			'secret_key'      => 'SOME_SECRET_KEY',
-		);
-		update_option( 'c3_settings', $param );
-		$res = $this->get_c3_settings();
-		$this->assertFalse( $res );
-	}
-
-	function test_if_c3_settings_is_has_lost_secret_key_param() {
-		$param =  array(
-			'distribution_id' => 'SOME_DISTRIBUTION',
-			'access_key'      => 'SOME_ACCESS_KEY',
-			'secret_key'      => '',
-		);
-		update_option( 'c3_settings', $param );
-		$res = $this->get_c3_settings();
-		$this->assertFalse( $res );
 	}
 
 	function test_check_invalidation_status_unpublish_to_publish() {

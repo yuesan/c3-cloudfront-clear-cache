@@ -62,16 +62,12 @@ class CloudFront_Clear_Cache_Admin {
 		if ( ! $c3_settings ) {
 			$c3_settings = array(
 				'distribution_id' => '',
-				'access_key'      => '',
-				'secret_key'      => '',
 			);
 		}
 
 		$nonce_key = CloudFront_Clear_Cache::OPTION_NAME;
 		$c3_settings_keys = array(
 			'distribution_id' => __( 'CloudFront Distribution ID', self::$text_domain ),
-			'access_key'      => __( 'AWS Access Key', self::$text_domain ),
-			'secret_key'      => __( 'AWS Secret Key', self::$text_domain ),
 		);
 
 ?>
